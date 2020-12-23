@@ -37,7 +37,7 @@
   return self;
 }
 
-- (id)item
+- (RATreeItem*)item
 {
   if (!_item) {
     _item = [self.dataSource itemForTreeNodeItem:self];

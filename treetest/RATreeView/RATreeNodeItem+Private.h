@@ -20,10 +20,11 @@
 
 
 #import "RATreeNodeItem.h"
+#import "RATreeItem.h"
 
 @protocol RATreeNodeItemDataSource <NSObject>
 
-- (id)itemForTreeNodeItem:(RATreeNodeItem *)treeNodeItem;
+- (RATreeItem*)itemForTreeNodeItem:(RATreeNodeItem *)treeNodeItem;
 
 @end
 

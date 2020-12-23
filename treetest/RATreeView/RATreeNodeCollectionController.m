@@ -274,7 +274,7 @@
 
 #pragma mark - RATreeNodeItem data source
 
-- (id)itemForTreeNodeItem:(RATreeNodeItem *)treeNodeItem
+- (RATreeItem*)itemForTreeNodeItem:(RATreeNodeItem *)treeNodeItem
 {
   return [self.dataSource treeNodeCollectionController:self child:treeNodeItem.index ofItem:treeNodeItem.parent];
 }

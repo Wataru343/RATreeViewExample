@@ -28,7 +28,7 @@
 #import "RATreeNode.h"
 #import "RATreeNodeController.h"
 #import "RATreeNodeCollectionController.h"
-
+#import "RATreeItem.h"
 
 
 @implementation RATreeView (Private)
@@ -70,7 +70,7 @@
 
 - (void)collapseCellForTreeNode:(RATreeNode *)treeNode
 {
-  [self collapseCellForTreeNode:treeNode collapseChildren:self.collapsesChildRowsWhenRowCollapses withRowAnimation:self.rowsCollapsingAnimation];
+  [self collapseCellForTreeNode:treeNode collapseChildren:YES withRowAnimation:self.rowsCollapsingAnimation];
 }
 
 - (void)collapseCellForTreeNode:(RATreeNode *)treeNode collapseChildren:(BOOL)collapseChildren withRowAnimation:(RATreeViewRowAnimation)rowAnimation
@@ -94,14 +94,18 @@
 
 - (void)expandCellForTreeNode:(RATreeNode *)treeNode
 {
-  [self expandCellForTreeNode:treeNode expandChildren:self.expandsChildRowsWhenRowExpands withRowAnimation:self.rowsExpandingAnimation];
+  RATreeItem *item =  treeNode.item;
+  [self expandCellForTreeNode:treeNode expandChildren:item.expanded withRowAnimation:self.rowsExpandingAnimation];
 }
 
 - (void)expandCellForTreeNode:(RATreeNode *)treeNode expandChildren:(BOOL)expandChildren withRowAnimation:(RATreeViewRowAnimation)rowAnimation
 {
+  if (rowAnimation == RATreeViewRowAnimationNone)
+    [UIView setAnimationsEnabled:NO];
+
   [self.tableView beginUpdates];
   [self.batchChanges beginUpdates];
-  
+
   NSInteger index = [self.treeNodeCollectionController indexForItem:treeNode.item];
   __weak __typeof(self) weakSelf = self;
   [self.batchChanges expandItemWithBlock:^{
@@ -110,10 +114,13 @@
       [weakSelf.tableView insertRowsAtIndexPaths:IndexesToIndexPaths(insertions) withRowAnimation:tableViewRowAnimation];
     }];
   } atIndex:index];
-  
-  
+
+
   [self.batchChanges endUpdates];
   [self.tableView endUpdates];
+
+  if (rowAnimation == RATreeViewRowAnimationNone)
+    [UIView setAnimationsEnabled:YES];
 }
 
 - (void)insertItemAtIndex:(NSInteger)index inParent:(id)parent withAnimation:(RATreeViewRowAnimation)animation

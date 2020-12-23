@@ -57,7 +57,17 @@
   [refreshControl addTarget:self action:@selector(refreshControlChanged:) forControlEvents:UIControlEventValueChanged];
   [treeView.scrollView addSubview:refreshControl];
 
-  [treeView reloadData];
+    [treeView reloadData:^{
+        //Completion
+        for (RADataObject *item in self.data) {
+            //Disable expand animation
+            if (item.expanded) {
+                self.treeView.rowsExpandingAnimation = RATreeViewRowAnimationNone;
+                [self.treeView expandCollapseRow:[self.treeView indexPathForItem:item]];
+                self.treeView.rowsExpandingAnimation = RATreeViewRowAnimationTop;
+            }
+        }
+    }];
   [treeView setBackgroundColor:[UIColor colorWithWhite:0.97 alpha:1.0]];
 
 
@@ -260,7 +270,7 @@
   return [data.children count];
 }
 
-- (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(id)item
+- (RATreeItem*)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(id)item
 {
   RADataObject *data = item;
   if (item == nil) {
@@ -287,11 +297,13 @@
 
   RADataObject *computer1 = [RADataObject dataObjectWithName:@"Computer 1"
                                                     children:[NSArray arrayWithObjects:notebook1, notebook2, nil]];
+  computer1.expanded = YES;
   RADataObject *computer2 = [RADataObject dataObjectWithName:@"Computer 2" children:nil];
   RADataObject *computer3 = [RADataObject dataObjectWithName:@"Computer 3" children:nil];
 
   RADataObject *computer = [RADataObject dataObjectWithName:@"Computers"
                                                    children:[NSArray arrayWithObjects:computer1, computer2, computer3, nil]];
+  computer.expanded = YES;
   RADataObject *car = [RADataObject dataObjectWithName:@"Cars" children:nil];
   RADataObject *bike = [RADataObject dataObjectWithName:@"Bikes" children:nil];
   RADataObject *house = [RADataObject dataObjectWithName:@"Houses" children:nil];

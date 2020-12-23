@@ -15,6 +15,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "RATreeItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -91,7 +92,7 @@ typedef enum RATreeViewRowAnimation {
  *
  *  @return The child item at index of a item. If item is nil, returns the appropriate child item of the root object.
  */
-- (id)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(nullable id)item;
+- (RATreeItem*)treeView:(RATreeView *)treeView child:(NSInteger)index ofItem:(nullable id)item;
 
 @optional
 
@@ -487,8 +488,8 @@ typedef enum RATreeViewRowAnimation {
 - (void)collapseRowForItem:(nullable id)item collapseChildren:(BOOL)collapseChildren withRowAnimation:(RATreeViewRowAnimation)animation;
 - (void)collapseRowForItem:(nullable id)item withRowAnimation:(RATreeViewRowAnimation)animation;
 - (void)collapseRowForItem:(nullable id)item;
-@property (nonatomic) BOOL expandsChildRowsWhenRowExpands;
-@property (nonatomic) BOOL collapsesChildRowsWhenRowCollapses;
+//@property (nonatomic) BOOL expandsChildRowsWhenRowExpands;
+//@property (nonatomic) BOOL collapsesChildRowsWhenRowCollapses;
 @property (nonatomic) RATreeViewRowAnimation rowsExpandingAnimation;
 @property (nonatomic) RATreeViewRowAnimation rowsCollapsingAnimation;
 
@@ -556,6 +557,7 @@ typedef enum RATreeViewRowAnimation {
 - (nullable id)itemForCell:(UITableViewCell *)cell;
 - (nullable id)itemForRowAtPoint:(CGPoint)point;
 - (nullable id)itemsForRowsInRect:(CGRect)rect;
+- (nullable NSIndexPath *)indexPathForItem:(id)item;
 - (nullable NSIndexPath *)indexPathForCell:(UITableViewCell *)cell;
 - (nullable __kindof UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (nullable id)itemForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -596,7 +598,7 @@ typedef enum RATreeViewRowAnimation {
 /// @name Reloading the Tree View
 ///------------------------------------------------
 
-- (void)reloadData;
+- (void)reloadData:(void (^ __nullable)(void))completion;
 - (void)reloadRowsForItems:(NSArray *)items withRowAnimation:(RATreeViewRowAnimation)animation;
 - (void)reloadRows;
 

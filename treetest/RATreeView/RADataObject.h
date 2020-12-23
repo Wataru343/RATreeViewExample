@@ -19,8 +19,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RATreeItem.h"
 
-@interface RADataObject : NSObject
+@interface RADataObject : RATreeItem
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *children;

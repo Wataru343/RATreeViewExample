@@ -20,10 +20,11 @@
 
 
 #import <Foundation/Foundation.h>
+#import "RATreeItem.h"
 
 @interface RATreeNodeItem : NSObject
 
-@property (nonatomic, strong, readonly) id item;
+@property (nonatomic, strong, readonly) RATreeItem* item;
 
 - (instancetype)initWithParent:(id)parent index:(NSInteger)index;
 

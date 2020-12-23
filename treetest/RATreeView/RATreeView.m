@@ -84,8 +84,8 @@
   [self addSubview:tableView];
   [self setTableView:tableView];
 
-  self.expandsChildRowsWhenRowExpands = NO;
-  self.collapsesChildRowsWhenRowCollapses = NO;
+  //self.expandsChildRowsWhenRowExpands = NO;
+  //self.collapsesChildRowsWhenRowCollapses = NO;
   self.rowsExpandingAnimation = RATreeViewRowAnimationTop;
   self.rowsCollapsingAnimation = RATreeViewRowAnimationBottom;
 }
@@ -405,7 +405,13 @@
 
 
 #pragma mark - Accessing Cells
-- (NSIndexPath *)indexPathForCell:(UITableViewCell *)cell;
+- (NSIndexPath *)indexPathForItem:(id)item
+{
+  UITableViewCell *cell = [self cellForItem:item];
+  return [self.tableView indexPathForCell:cell];
+}
+
+- (NSIndexPath *)indexPathForCell:(UITableViewCell *)cell
 {
   return [self.tableView indexPathForCell:cell];
 }
@@ -564,10 +570,18 @@
 
 #pragma mark - Reloading the Tree View
 
-- (void)reloadData
+- (void)reloadData:(void (^)(void))completion
 {
-  [self setupTreeStructure];
-  [self.tableView reloadData];
+  [UIView animateWithDuration: 0.0 animations:^{
+    [self setupTreeStructure];
+    [self.tableView reloadData];
+  } completion:^(BOOL finished) {
+    if (finished) {
+      if (completion) {
+        completion();
+      }
+    }
+  }];
 }
 
 - (void)reloadRowsForItems:(NSArray *)items withRowAnimation:(RATreeViewRowAnimation)animation
