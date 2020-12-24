@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0433502D2593D83900E332F4 /* RATreeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0433502C2593D83900E332F4 /* RATreeItem.m */; };
 		04501EBB2589027300920238 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04501EBA2589027300920238 /* MobileCoreServices.framework */; };
 		0486D0F82587E658006C4DE9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486D0F72587E658006C4DE9 /* AppDelegate.m */; };
 		0486D0FB2587E658006C4DE9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0486D0FA2587E658006C4DE9 /* SceneDelegate.m */; };
@@ -59,8 +58,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0433502B2593D83900E332F4 /* RATreeItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RATreeItem.h; sourceTree = "<group>"; };
-		0433502C2593D83900E332F4 /* RATreeItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RATreeItem.m; sourceTree = "<group>"; };
 		04501EBA2589027300920238 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		0486D0F32587E658006C4DE9 /* treetest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = treetest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0486D0F62587E658006C4DE9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -215,8 +212,6 @@
 				04F35E3A25934FA7002D4DA1 /* RATreeView+TableViewDragDelegate.m */,
 				04F35E5225934FA8002D4DA1 /* RATreeView.h */,
 				04F35E5325934FA8002D4DA1 /* RATreeView.m */,
-				0433502B2593D83900E332F4 /* RATreeItem.h */,
-				0433502C2593D83900E332F4 /* RATreeItem.m */,
 			);
 			path = RATreeView;
 			sourceTree = "<group>";
@@ -299,7 +294,6 @@
 				04F35E6B259350D2002D4DA1 /* RATableViewCell.xib in Sources */,
 				04F35E6C259350D2002D4DA1 /* RABatchChangeEntity.h in Sources */,
 				04F35E6D259350D2002D4DA1 /* RABatchChangeEntity.m in Sources */,
-				0433502D2593D83900E332F4 /* RATreeItem.m in Sources */,
 				04F35E6E259350D2002D4DA1 /* RABatchChanges.h in Sources */,
 				04F35E6F259350D2002D4DA1 /* RABatchChanges.m in Sources */,
 				04F35E70259350D2002D4DA1 /* RATableView.h in Sources */,

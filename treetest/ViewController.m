@@ -60,11 +60,12 @@
     [treeView reloadData:^{
         //Completion
         for (RADataObject *item in self.data) {
-            //Disable expand animation
+            //Expand the cell after reloading.
             if (item.expanded) {
-                self.treeView.rowsExpandingAnimation = RATreeViewRowAnimationNone;
+                //Disable expand animation
+                self.treeView.isAnimationEnabled = NO;
                 [self.treeView expandCollapseRow:[self.treeView indexPathForItem:item]];
-                self.treeView.rowsExpandingAnimation = RATreeViewRowAnimationTop;
+                self.treeView.isAnimationEnabled = YES;
             }
         }
     }];
@@ -297,6 +298,7 @@
 
   RADataObject *computer1 = [RADataObject dataObjectWithName:@"Computer 1"
                                                     children:[NSArray arrayWithObjects:notebook1, notebook2, nil]];
+  //Specify the cells to be expanded.
   computer1.expanded = YES;
   RADataObject *computer2 = [RADataObject dataObjectWithName:@"Computer 2" children:nil];
   RADataObject *computer3 = [RADataObject dataObjectWithName:@"Computer 3" children:nil];
@@ -314,8 +316,23 @@
   RADataObject *sweets = [RADataObject dataObjectWithName:@"Sweets" children:nil];
   RADataObject *watches = [RADataObject dataObjectWithName:@"Watches" children:nil];
   RADataObject *walls = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls2 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls3 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls4 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls5 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls6 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls7 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls8 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls9 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls10 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls11 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls12 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls13 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls14 = [RADataObject dataObjectWithName:@"Walls" children:nil];
+    RADataObject *walls15 = [RADataObject dataObjectWithName:@"Walls" children:[NSArray arrayWithObjects:walls14, nil]];
+    walls15.expanded = YES;
 
-  self.data = [NSMutableArray arrayWithObjects:phone, computer, car, bike, house, flats, motorbike, drinks, food, sweets, watches, walls, nil];
+  self.data = [NSMutableArray arrayWithObjects:phone, computer, car, bike, house, flats, motorbike, drinks, food, sweets, watches, walls, walls2, walls3, walls4, walls5, walls6, walls7, walls8, walls9, walls10, walls11, walls12, walls13, walls15, nil];
 
 }
 

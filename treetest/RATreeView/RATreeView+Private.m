@@ -28,7 +28,7 @@
 #import "RATreeNode.h"
 #import "RATreeNodeController.h"
 #import "RATreeNodeCollectionController.h"
-#import "RATreeItem.h"
+#import "RATreeView.h"
 
 
 @implementation RATreeView (Private)
@@ -94,13 +94,13 @@
 
 - (void)expandCellForTreeNode:(RATreeNode *)treeNode
 {
-  RATreeItem *item =  treeNode.item;
-  [self expandCellForTreeNode:treeNode expandChildren:item.expanded withRowAnimation:self.rowsExpandingAnimation];
+  BOOL isExpanded = [treeNode.item isKindOfClass:RATreeItem.class] ? ((RATreeNode*)treeNode.item).expanded : NO;
+  [self expandCellForTreeNode:treeNode expandChildren:isExpanded withRowAnimation:self.rowsExpandingAnimation];
 }
 
 - (void)expandCellForTreeNode:(RATreeNode *)treeNode expandChildren:(BOOL)expandChildren withRowAnimation:(RATreeViewRowAnimation)rowAnimation
 {
-  if (rowAnimation == RATreeViewRowAnimationNone)
+  if (!self.isAnimationEnabled)
     [UIView setAnimationsEnabled:NO];
 
   [self.tableView beginUpdates];
@@ -119,7 +119,7 @@
   [self.batchChanges endUpdates];
   [self.tableView endUpdates];
 
-  if (rowAnimation == RATreeViewRowAnimationNone)
+  if (!self.isAnimationEnabled)
     [UIView setAnimationsEnabled:YES];
 }
 

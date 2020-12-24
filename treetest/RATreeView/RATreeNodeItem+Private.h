@@ -20,7 +20,6 @@
 
 
 #import "RATreeNodeItem.h"
-#import "RATreeItem.h"
 
 @protocol RATreeNodeItemDataSource <NSObject>
 

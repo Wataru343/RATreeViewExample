@@ -15,11 +15,11 @@
 
 
 #import <UIKit/UIKit.h>
-#import "RATreeItem.h"
+#import "RATreeView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class RATreeView, RATreeNodeCollectionController, RATreeNode;
+@class RATreeView, RATreeNodeCollectionController, RATreeNode, RATreeItem;
 
 
 typedef enum {
@@ -51,6 +51,9 @@ typedef enum RATreeViewRowAnimation {
     RATreeViewRowAnimationAutomatic = UITableViewRowAnimationAutomatic
 } RATreeViewRowAnimation;
 
+@interface RATreeItem: NSObject
+@property (nonatomic) BOOL expanded;
+@end
 
 /**
  * The data source of the RATreeView object must conform to RATreeVIewDataSource protocol. It is implemented by an object with metdiates the application's data model for RATreeView object.
@@ -492,6 +495,7 @@ typedef enum RATreeViewRowAnimation {
 //@property (nonatomic) BOOL collapsesChildRowsWhenRowCollapses;
 @property (nonatomic) RATreeViewRowAnimation rowsExpandingAnimation;
 @property (nonatomic) RATreeViewRowAnimation rowsCollapsingAnimation;
+@property (nonatomic) BOOL isAnimationEnabled;
 
 
 ///------------------------------------------------

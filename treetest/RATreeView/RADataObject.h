@@ -19,7 +19,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RATreeItem.h"
+#import "RATreeView.h"
 
 @interface RADataObject : RATreeItem
 

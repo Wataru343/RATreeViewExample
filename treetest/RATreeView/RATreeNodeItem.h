@@ -20,7 +20,7 @@
 
 
 #import <Foundation/Foundation.h>
-#import "RATreeItem.h"
+#import "RATreeView.h"
 
 @interface RATreeNodeItem : NSObject
 
